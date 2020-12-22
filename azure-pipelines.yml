@@ -1,0 +1,21 @@
+# ASP.NET
+# Build and test ASP.NET projects.
+# Add steps that publish symbols, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/apps/aspnet/build-aspnet-4
+
+trigger:
+- main
+
+variables:
+  # Azure service connection established during pipeline creation
+  azureSubscription: <Name of your Azure subscription>
+  appName: <Name of the Function app>
+  # Agent VM image name
+  vmImageName: 'ubuntu-latest'
+
+- task: AzureFunctionApp@1 # Add this at the end of your file
+  inputs:
+    azureSubscription: <Azure service connection>
+    appType: functionApp
+    appName: $(appName)
+    package: $(System.ArtifactsDirectory)/**/*.zip
