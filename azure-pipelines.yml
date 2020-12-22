@@ -13,7 +13,8 @@ variables:
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
 
-- task: AzureFunctionApp@1 # Add this at the end of your file
+steps:
+- task: AzureFunctionApp@1
   inputs:
     azureSubscription: <Azure service connection>
     appType: functionApp
